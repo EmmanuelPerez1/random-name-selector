@@ -31,3 +31,7 @@ button {
 	background-color: #666;
 	border-radius: 2px;
 }
+
+.hidden {
+	display: none;
+}
