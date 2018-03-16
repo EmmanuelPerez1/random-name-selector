@@ -1,6 +1,6 @@
 body {
 	font-family: 'Open Sans', sans-serif;
-	background-image: url('img/background.png');
+	background-image: url('../img/background.png');
 }
 
 input[type=number] {
@@ -24,7 +24,7 @@ button {
 	box-shadow: 0 0 1px #666;
 }
 
-#results {
+#results, #result-list {
 	margin: 8px 0 0;
 	padding: 1px 12px;
 	color: #fff;
