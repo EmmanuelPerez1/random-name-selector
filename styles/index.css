@@ -1,5 +1,15 @@
+ul, li {
+	margin: 0;
+	padding: 1px;
+}
+
+ul {
+	margin: 2px;
+	list-style-type: none;
+}
+
 input[type=text] {
-	width: 78px;
+	width: 158px;
 }
 
 #container {
