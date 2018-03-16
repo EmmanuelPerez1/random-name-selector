@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width;initial-scale=1.0">
-	<link rel="icon" type="image/png" href="img/favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>Volado</title>
+	<link rel="icon" type="image/png" href="/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 	<link rel="stylesheet" type="text/css" href="styles/index.css">
 </head>
@@ -12,22 +13,15 @@
 
 <div id="container">
 	<div class="integrantes">
+		<button id="ad">Añadir</button>&nbsp;<button id="as">Quitar</button>
 		<table>
 			<tr>
-				<td>Brandon</td>
-				<td><input type="number" id="min0" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max0" min="0" max="200" placeholder="Máximo"></td>
+				<td><input type="text" placeholder="Nombre"></td>
+				<td><input type="number" id="min" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max" min="0" max="200" placeholder="Máximo"></td>
 			</tr>
 			<tr>
-				<td>Daniel</td>
-				<td><input type="number" id="min1" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max1" min="0" max="200" placeholder="Máximo"></td>
-			</tr>
-			<tr>
-				<td>Ingrid</td>
-				<td><input type="number" id="min2" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max2" min="0" max="200" placeholder="Máximo"></td>
-			</tr>
-			<tr>
-				<td>Ulises</td>
-				<td><input type="number" id="min3" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max3" min="0" max="200" placeholder="Máximo"></td>
+				<td><input type="text" placeholder="Nombre"></td>
+				<td><input type="number" id="min" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max" min="0" max="200" placeholder="Máximo"></td>
 			</tr>
 		</table>
 	</div>
@@ -38,6 +32,7 @@
 			Seleccionado: <span></span>.<br>¡Felicidades! :)
 		</div>
 		<div id="loading">Cargando...</div>
+		<div id="error">Ha habido un error :(</div>
 	</div>
 	<button id="erase-list">Borrar lista</button>
 	<div id="result-list"></div>
