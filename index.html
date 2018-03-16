@@ -12,33 +12,26 @@
 <body>
 
 <div id="container">
-	<div class="integrantes">
-		<button id="ad">Añadir</button>&nbsp;<button id="as">Quitar</button>
-		<table>
-			<tr>
-				<td><input type="text" placeholder="Nombre"></td>
-				<td><input type="number" id="min" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max" min="0" max="200" placeholder="Máximo"></td>
-			</tr>
-			<tr>
-				<td><input type="text" placeholder="Nombre"></td>
-				<td><input type="number" id="min" min="0" max="200" placeholder="Mínimo"> - <input type="number" id="max" min="0" max="200" placeholder="Máximo"></td>
-			</tr>
-		</table>
+	<div id="integrantes">
+		<button id="bt-add">Añadir</button>&nbsp;<button id="bt-remove">Quitar</button>
+		<ul id="names-list">
+			<li><input type="text" placeholder="Nombre"></li>
+			<li><input type="text" placeholder="Nombre"></li>
+		</ul>
 	</div>
-	<button id="throw-dice">Lanzar dadito x)</button>
+	<button id="bt-throw-dice">Lanzar dadito x)</button>
 
-	<div class="random">
+	<div id="random">
 		<div id="result">
 			Seleccionado: <span></span>.<br>¡Felicidades! :)
 		</div>
 		<div id="loading">Cargando...</div>
 		<div id="error">Ha habido un error :(</div>
 	</div>
-	<button id="erase-list">Borrar lista</button>
+	<button id="bt-erase-list">Borrar lista</button>
 	<div id="result-list"></div>
 </div>
 
-<script src="scripts/jquery.min.js"></script>
 <script src="scripts/index.js"></script>
 </body>
 </html>

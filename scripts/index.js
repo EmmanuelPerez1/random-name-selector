@@ -1,146 +1,131 @@
 (function() {
-	var result = $('#result').hide(),
-		loading = $('#loading').hide(),
-		err = $('#error').hide(),
-		resultList = $('#result-list').hide(),
-		span = $('span'),
-		table = $('table');
+    let resultDiv = document.getElementById('result'),
+        loadingDiv = document.getElementById('loading'),
+        errDiv = document.getElementById('error'),
+        resultListDiv = document.getElementById('result-list'),
+        namesList = document.getElementById('names-list'),
+        span = document.getElementsByTagName('span')[0];
 
-	/*
-	 * ########## onclick listeners ##########
-	 */
+    /*
+    * onclick listeners
+    */
+    document.getElementById('bt-throw-dice').onclick = function (e) {
+        showElement(resultListDiv);
 
-	$('#throw-dice').click(function(e) {
-		e.preventDefault();
-		resultList.show();
+        hideElement(resultDiv);
+        hideElement(errDiv);
+        showElement(loadingDiv);
+        getRandInts(getMax());
+    }
 
-		result.hide();
-		err.hide();
-		loading.show();
-		getRandInts(getMin(), getMax());
-	});
+    document.getElementById('bt-erase-list').onclick = function (e) {
+        resultListDiv.innerHTML = '';
+        hideElement(resultListDiv);
+    }
 
-	$('#erase-list').click(function(e) {
-		resultList.html('');
-		resultList.hide();
-	});
+    document.getElementById('bt-add').onclick = function (e) {
+        let li = document.createElement('li'),
+            input = document.createElement('input');
+        
+        input.type = 'text';
+        input.placeholder = 'Nombre';
 
-	$('#ad').click(function(e) {
-		e.preventDefault();
+        li.appendChild(input);
+        namesList.appendChild(li);
+    }
 
-		table.append($('<tr><td><input type=\"text\" placeholder=\"Nombre\"></td><td><input type=\"number\" id=\"min\" min=\"0\" max=\"200\" placeholder=\"Mínimo\"> - <input type=\"number\" id=\"max\" min=\"0\" max=\"200\" placeholder=\"Máximo\"></td></tr>'));
-	});
+    document.getElementById('bt-remove').onclick = function (e) {
+        let size = namesList.children.length;
 
-	$('#as').click(function(e) {
-		e.preventDefault();
+        if (size > 2) {
+            namesList.children[size - 1].remove();
+        }
+    }
 
-		var o = table.find('tr'),
-			i = o.length;
+    /*
+    * api function
+    */
+    function getRandInts(max) {
+        // API Key: 3a1b27f9-9547-44a3-abf7-71ceb007f68e
+        let rndId = Math.floor((Math.random() * 10000)),
+            o = {
+                'jsonrpc': '2.0',
+                'method': 'generateIntegers',
+                'params': {
+                    'apiKey': '3a1b27f9-9547-44a3-abf7-71ceb007f68e',
+                    'n': 1,
+                    'min': 1,
+                    'max': max
+                },
+                'id': rndId
+            },
+            xhr = new XMLHttpRequest();
 
-		if (i > 2)
-			o[i - 1].remove();
-	});
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = JSON.parse(this.responseText);
 
-	/*
-	 * ########## api function ##########
-	 */
+                if (rndId == data.id && data.error == null) {
+                    let rdata = data.result.random.data[0];
+                    span.innerText = resolvWinner(rdata);
+                    resultListDiv.innerHTML += (resolvWinner(rdata) + '<br>');
 
-	function getRandInts(min, max) {
-		// API Key: 3a1b27f9-9547-44a3-abf7-71ceb007f68e
-		var rndId = Math.floor((Math.random() * 10000)),
-			o = {
-			'jsonrpc': '2.0',
-			'method': 'generateIntegers',
-			'params': {
-				'apiKey': '3a1b27f9-9547-44a3-abf7-71ceb007f68e',
-				'n': 1,
-				'min': min,
-				'max': max
-			},
-			'id': rndId
-		};
+                    showElement(resultDiv);
+                } else {
+                    showElement(errDiv);
+                    console.log(data.error);
+                }
 
-		$.ajax({
-			'url': 'https://api.random.org/json-rpc/1/invoke',
-			'type': 'POST',
-			'contentType': 'application/json-rpc',
-			'data': JSON.stringify(o)
-		})
-		.done(function(data) {
-			if (rndId == data.id && data.error == null) {
-				var rdata = data.result.random.data[0];
-				span.text(rdata + ' (' + defRange(rdata) + ')');
-				resultList.prepend(rdata + ' (' + defRange(rdata) + ')<br>');
+                hideElement(loadingDiv);
+            }
+        }
 
-				result.show();
-			} else {
-				err.show();
-				console.log(data.error);
-			}
+        xhr.open('POST', 'https://api.random.org/json-rpc/1/invoke');
+        xhr.setRequestHeader('Content-Type', 'application/json-rpc');
+        xhr.send(JSON.stringify(o));
+    }
 
-			loading.hide();
-		});
-	}
+    /*
+    * helper functions
+    */
+    function hideElement(element) {
+        element.className += ' hidden';
+    }
 
-	/*
-	 * ########## helper functions ##########
-	 */
+    function showElement(element) {
+        let c = element.className.replace(/hidden/g, '');
+        c = c.replace(/\s+/g, ' ');
 
-	function getMin() {
-		var min = 0,
-			num;
+        if (c.length == 1 && c == ' ')
+            c = '';
+        else {
+            if(c.indexOf(' ') == 0)
+                c = c.substr(1);
+            if (c.lastIndexOf(' ') == c.length - 1)
+                c = c.substr(0, c.length - 1);
+        }
 
-		$.each(table.find('tr'), function(i, v) {
-			num = parseInt($(v).find('#min')[0].value);
+        element.className = c;
+    }
 
-			if (i == 0)
-				min = num;
-			else if (num < min)
-				min = num;
-		});
+    function getMax() {
+        return namesList.children.length * 5;
+    }
 
-		return min;
-	}
+    function resolvWinner(val) {
+        let size = namesList.children.length,
+            i = (val - 1) % size;
 
-	function getMax() {
-		var max = 0,
-			num;
+        console.log(val + ' MOD ' + size + ' = ' + (i + 1) + ' :> ' +
+            namesList.children[i].children[0].value);
+        return namesList.children[i].children[0].value;
+    }
 
-		$.each(table.find('tr'), function(i, v) {
-			num = parseInt($(v).find('#max')[0].value);
-
-			if (i == 0)
-				max = num;
-			else if (num > max)
-				max = num;
-		});
-
-		return max;
-	}
-
-	function defRange(val) {
-		var array = [], str = '',
-			min, max, name;
-
-		$.each(table.find('tr'), function(i, v) {
-			min = parseInt($(v).find('#min')[0].value);
-			max = parseInt($(v).find('#max')[0].value);
-			name = $(v).find('input')[0].value;
-
-			if (val <= max && val >= min)
-				array.push(name);
-		});
-
-		// Format array as string
-		for (i = 0; i < array.length; i++) {
-			if ((i + 1) == array.length)
-				str += array[i];
-			else if ((i + 2) == array.length)
-				str += array[i] + ' y ';
-			else
-				str += array[i] + ', ';
-		}
-
-		return str;
-	}
+    /*
+     * onload
+     */
+    hideElement(resultDiv);
+    hideElement(loadingDiv);
+    hideElement(errDiv);
+    hideElement(resultListDiv);
 })();
