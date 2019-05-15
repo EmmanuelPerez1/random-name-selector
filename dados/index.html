@@ -1,36 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width;initial-scale=1.0">
-	<link rel="icon" type="image/png" href="../img/favicon.ico">
-	<title>Randomize</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" type="text/css" href="../styles/main.css">
-	<link rel="stylesheet" type="text/css" href="../styles/simple.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Dados</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="../styles/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../styles/main.css">
+  <link rel="stylesheet" type="text/css" href="../styles/dados.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
 </head>
 <body>
+  <div class="app-container">
+    <h1 class="title">Dados</h1>
 
-<div id="container">
-	<!-- <div id="bindings">
-		input
-	</div> -->
-	<div id="controls">
-		<table>
-		<tr> <td><label for="minb">Límite inferior</label></td> <td><input type="number" id="minb" min="0" max="99"></td> </tr>
-		<tr> <td><label for="maxb">Límite superior</label></td> <td><input type="number" id="maxb" min="0" max="99"></td> </tr>
-		<tr> <td colspan="2"><button id="drop-dice">Lanzar dados :0</button></td> </tr>
-		</table>
-	</div>
-	<div id="results">
-		El resultado es <span id="result"></span>.
-		<!-- Resultado:
-			<span id="result"></span>
-			<span id="rname"></span> -->
-	</div>
-</div>
+    <div class="controls grid-container">
+      <div class="grid-item label"><label for="minb">Límite inferior:</label></div>
+      <div class="grid-item control"><input type="number" id="minb" min="0" max="99"></div>
+      <div class="grid-item label"><label for="maxb">Límite superior:</label></div>
+      <div class="grid-item control"><input type="number" id="maxb" min="0" max="99"></div>
+      <div class="grid-item button"><button id="drop-dice">Lanzar dados</button></div>
+    </div>
+    <div id="results">
+      El resultado es <span id="result"></span>.
+    </div>
+  </div>
 
-<script src="../scripts/jquery.min.js"></script>
-<script src="../scripts/simple.js"></script>
+  <script src="../scripts/common.js"></script>
+  <script src="../scripts/dados.js"></script>
 </body>
 </html>

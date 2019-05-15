@@ -1,37 +1,43 @@
 body {
-	font-family: 'Open Sans', sans-serif;
-	background-image: url('../img/background.png');
-}
-
-input[type=number] {
-	width: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 0.5em;
+  background-color: #efefef;
 }
 
 button {
-	margin: 4px 0 0;
-	background-color: #ffd0bf;
-	border: 1px solid #ff5315;
-	border-radius: 2px;
-	box-shadow: 0 0 3px #b33000;
+  padding: 0.25em 0.625em;
+  border: 0;
+  margin: 0.125em;
+
+  background: linear-gradient(to bottom, #32a6cd, #2988a8);
+  color: #e6e6e6;
+
+  border-radius: 0.2em;
+  box-shadow: 0 0 0.2em #277691;
 }
 
-#container {
-	width: 180px;
-	margin: 0 auto;
-	padding: 2px;
-	background-color: #d9d9d9;
-	border-radius: 2px;
-	box-shadow: 0 0 1px #666;
+h1 {
+  margin: 0.5em 0;
+  border-bottom: 1px solid #277691;
 }
 
-#results, #result-list {
-	margin: 8px 0 0;
-	padding: 1px 12px;
-	color: #fff;
-	background-color: #666;
-	border-radius: 2px;
+input {
+  width: 100%; height: 1.5em;
+  padding: 0.125em 0.25em;
+  border: 1px solid #ccc;
+
+  border-radius: 0.25em;
+}
+
+input:focus {
+  border-color: #277691;
+}
+
+input[type=number] {
+  width: 3.75em;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }

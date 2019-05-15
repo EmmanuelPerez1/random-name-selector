@@ -1,17 +1,21 @@
-ul, li {
-	margin: 0;
-	padding: 1px;
+li {
+  margin: 0.125em 0.6em 0.125em 0;
+}
+
+p {
+  margin: 0.5em 0;
 }
 
 ul {
-	margin: 2px;
-	list-style-type: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
-input[type=text] {
-	width: 158px;
+#result {
+  margin: 0.5em 0;
 }
 
-#container {
-	width: 200px;
+.pane {
+  margin: 0.75em 0;
 }

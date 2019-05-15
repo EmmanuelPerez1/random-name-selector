@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<title>Volado</title>
-	<link rel="icon" type="image/png" href="/img/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" type="text/css" href="styles/main.css">
-	<link rel="stylesheet" type="text/css" href="styles/index.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tómbola</title>
+  <link rel="icon" type="image/png" href="img/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="styles/index.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
 </head>
 <body>
+  <div class="app-container">
+    <h1 class="title">Tómbola</h1>
 
-<div id="container">
-	<div id="integrantes">
-		<button id="bt-add">Añadir</button>&nbsp;<button id="bt-remove">Quitar</button>
-		<ul id="names-list">
-			<li><input type="text" placeholder="Nombre"></li>
-			<li><input type="text" placeholder="Nombre"></li>
-		</ul>
-	</div>
-	<button id="bt-throw-dice">Lanzar dadito x)</button>
+    <div id="names-pane" class="pane">
+      <p>Nombres:</p>
+      <ul id="name-list">
+        <li><input type="text"></li>
+        <li><input type="text"></li>
+      </ul>
+      <button id="bt-add-name">Añadir</button>
+      <button id="bt-remove-name">Quitar</button>
+    </div>
+    <button id="bt-spin">Girar tómbola</button>
 
-	<div id="random">
-		<div id="result">
-			Seleccionado: <span></span>.<br>¡Felicidades! :)
-		</div>
-		<div id="loading">Cargando...</div>
-		<div id="error">Ha habido un error :(</div>
-	</div>
-	<button id="bt-erase-list">Borrar lista</button>
-	<div id="result-list"></div>
-</div>
+    <div id="results-pane" class="pane">
+      <div id="result">
+        Seleccionado: <span id="name"></span>.
+      </div>
+      <div id="result-history">
+        <p>Historial:</p>
+        <ul id="result-list"></ul>
+        <button id="bt-erase-list">Borrar lista</button>
+      </div>
+    </div>
+  </div>
 
-<script src="scripts/index.js"></script>
+  <script src="scripts/common.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 </html>
