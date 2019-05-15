@@ -1,0 +1,25 @@
+.controls {
+  margin-bottom: 1em;
+}
+
+.grid-container {
+  display: grid;
+
+  grid-template-columns: 7.6em auto;
+  grid-row-gap: 0.22em;
+  grid-column-gap: 1.77em;
+}
+
+.grid-item.button {
+  grid-column: 1 / 3;
+}
+
+.grid-item.control {
+  text-align: right;
+}
+
+@media screen and (width > 420px) {
+  .grid-item.control {
+    text-align: left;
+  }
+}
