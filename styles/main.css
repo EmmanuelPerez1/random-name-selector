@@ -41,3 +41,20 @@ input[type=number] {
 .hidden {
   display: none;
 }
+
+@media screen and (width > 324px) {
+  input {
+    width: 18.75em;
+  }
+}
+
+@media screen and (width > 420px) {
+  body {
+    background: url('../img/background.png') repeat;
+  }
+
+  .app-container {
+    width: 26.25em;
+    margin: 0.5em auto;
+  }
+}
