@@ -10,7 +10,8 @@
   * click listeners
   */
   document.getElementById('bt-spin').addEventListener('click', function (e) {
-    if (validateState())
+    let state = validateState();
+    if (state == null)
     {
       let n = Math.floor(Math.random() * getMax() + 1),
         li = document.createElement('li'),
@@ -24,6 +25,10 @@
       showElement(resultsPane);
       showElement(result);
       showElement(resultHistory);
+    }
+    else {
+      alert('¡No puede haber elementos sin información!')
+      state.focus();
     }
   });
 
@@ -54,7 +59,7 @@
     if (size > 2)
       nameList.children[size - 1].remove();
     else
-      alert('No se pueden eliminar los dos primeros elementos')
+      alert('¡No se pueden eliminar los dos primeros elementos!')
   });
 
   function getMax() {
@@ -73,9 +78,9 @@
 
     for (let item of inputCollection)
       if (item.value.trim() == '')
-        return false;
+        return item;
 
-    return true;
+    return null;
   }
 
   /*
