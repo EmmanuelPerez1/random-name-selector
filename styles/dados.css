@@ -18,7 +18,7 @@
   text-align: right;
 }
 
-@media screen and (width > 420px) {
+@media screen and (min-width: 420px) {
   .grid-item.control {
     text-align: left;
   }

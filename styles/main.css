@@ -42,13 +42,13 @@ input[type=number] {
   display: none;
 }
 
-@media screen and (width > 324px) {
+@media screen and (min-width: 324px) {
   input {
     width: 18.75em;
   }
 }
 
-@media screen and (width > 420px) {
+@media screen and (min-width: 420px) {
   body {
     background: url('../img/background.png') repeat;
   }
