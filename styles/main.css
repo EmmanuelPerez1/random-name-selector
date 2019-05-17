@@ -42,19 +42,19 @@ input[type=number] {
   display: none;
 }
 
-@media screen and (min-width: 324px) {
+@media screen and (min-width: 440px) {
   input {
-    width: 18.75em;
+    width: 26em;
   }
 }
 
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 440px) {
   body {
     background: url('../img/background.png') repeat;
   }
 
   .app-container {
-    width: 26.25em;
+    width: 26.5em;
     margin: 0.5em auto;
   }
 }
